@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UsersModuleTest extends TestCase
@@ -13,9 +12,11 @@ class UsersModuleTest extends TestCase
     {
         $this->get('/usuarios')
             ->assertStatus(200)
-            ->assertSee('Usuarios');
+            ->assertSee('Listado de usuarios')
+            ->assertSee('Joel')
+            ->assertSee('Ellie');
     }
-
+    
     /** @test */
     function it_loads_the_users_details_page()
     {
@@ -23,13 +24,10 @@ class UsersModuleTest extends TestCase
             ->assertStatus(200)
             ->assertSee('Mostrando detalle del usuario: 5');
     }
-
+    
     /** @test */
     function it_loads_the_new_users_page()
     {
-
-        //$this->withExceptionHandling();
-
         $this->get('/usuarios/nuevo')
             ->assertStatus(200)
             ->assertSee('Crear nuevo usuario');
